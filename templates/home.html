@@ -1,0 +1,169 @@
+<div class="container">
+
+	<h1>Take Appointment</h1>
+	
+	
+
+	<form class="form-horizontal" name="myForm" ng-submit="pushData(frm)">
+		<div class="form-group">
+			<label for="fname" class="col-sm-2 control-label">First Name</label>
+			<div class="col-sm-10">
+				
+	
+                <input type="text" name="frm.fname" ng-model="frm.fname" placeholder="steve" class="form-control" required>
+                    <span style="color:red" ng-show="myForm.frm.fname.$dirty && myForm.frm.fname.$invalid">
+                    <span ng-show="myForm.frm.fname.$error.required">first name is required.</span>
+                    </span>
+            
+             </div>
+		</div>
+
+        <div class="form-group">
+			<label for="lname" class="col-sm-2 control-label">Last Lame</label>
+			<div class="col-sm-10">
+				
+		
+                    <input type="text" name="frm.lname" ng-model="frm.lname" placeholder="jobs" class="form-control" required>
+                        <span style="color:red" ng-show="myForm.frm.lname.$dirty && myFormfrm.lname.$invalid">
+                        <span ng-show="myForm.frm.lname.$error.required">last name is required.</span>
+                        </span>
+               
+             </div>
+		</div>
+
+        <div class="form-group">
+			<label for="age" class="col-sm-2 control-label">Age:</label>
+			<div class="col-sm-10">
+				
+			
+                    <input type="number" name="frm.Age" ng-model="frm.Age" placeholder="28" class="form-control" required>
+                       <span style="color:red" ng-show="myForm.frm.Age.$dirty && myForm.frm.Age.$invalid">
+                    <span ng-show="myForm.frm.Age.$error.required">Age is required.</span>
+                    </span>
+          
+             </div>
+		</div>
+        <? ---date of birth  />
+
+           <div class="form-group" name="frm.dob" ng-model="frm.dob" >
+			<label for="dob" class="col-sm-2 control-label">dob</label>
+			<div class="col-sm-10">
+				
+            <div class="form-control">Birthday</div>
+    <table>
+        <td>
+            <div id="dob-year" class="input-wrapper small-4 columns" style="padding-left: 0;">
+                <select name="year" id="year" ng-model="year" ng-options="y for y in years" ng-change="updateDate('year')" onchange="changeMe(this)" required>
+                    <option value='' disabled>Year</option>
+                </select>
+            </div>
+        </td>
+        <td>
+            <div id="dob-month" class="input-wrapper small-4 columns">
+                <select name="month" id="month" ng-model="month" ng-options="m.name for m in months | validMonths:year" ng-change="updateDate('month')" onchange="changeMe(this)" required>
+                    <option value='' disabled>Month</option>
+                </select>
+            </div>
+        </td>
+        <td>
+            <div id="dob-day" class="input-wrapper small-4 columns" style="padding-right: 0;">
+                <select name="day" id="day" ng-model="day" ng-options="d for d in days | daysInMonth:year:month | validDays:year:month" ng-change="updateDate('day')" onchange="changeMe(this)" required>
+                    <option value='' disabled>Day</option>
+                </select>
+            </div>
+        </td>
+    </table>
+</div>
+               </div>
+		</div>
+
+
+<div class="row">
+  <p class="columns small-12">
+    Selected date: {{frm.dob.dateOfBirth | date: 'longDate'}}
+  </p>  </div>
+		</div>
+ 
+</div>
+            <div class="form-group">
+			<label for="gender" class="col-sm-2 control-label">Gender:</label>
+			<div class="col-sm-10">
+                
+	                 <select name="frm.gender" class="form-control" ng-model="frm.gender" placeholder="Choose By gender" required>
+	                     <option value="female">Female</option>
+                         <option value="male">Male</option>
+	                 </select>
+	            <span style="color:red" ng-show="myForm.frm.gender.$dirty && myForm.frm.gender.$invalid">
+	            <span ng-show="myForm.frm.gender.$error.required">Gender is required.</span>
+            </span>
+        </p>
+                </div>
+		</div>
+
+                <div class="form-group">
+			<label for="phone" class="col-sm-2 control-label">Phone:</label>
+			<div class="col-sm-10">
+      
+        <input type="number" name="frm.phone" ng-model="frm.phone" placeholder="9876543210" required>
+        <span style="color:red" ng-show="myForm.frm.phone.$dirty && myForm.frm.phone.$invalid">
+            <span ng-show="myForm.frm.phone.$error.required">phone is required.</span>
+        </span>
+
+    </div>
+		</div>
+                <div class="form-group">
+			<label for="email" class="col-sm-2 control-label">Email:</label>
+			<div class="col-sm-10">
+                 
+                    <input type="email" name="frm.email" ng-model="frm.email" placeholder="stevejobs@gmail.com" required>
+                    <span style="color:red" ng-show="myForm.frm.email.$dirty && myForm.frm.email.$invalid">
+                    <span ng-show="myFormfrm.email.$error.required">Email is required.</span>
+                    <span ng-show="myForm.frm.email.$error.email">Invalid email address.</span>
+                    </span>
+                
+                 </div>
+		</div>
+
+
+		<div class="form-group">
+			<label for="message" class="col-sm-2 control-label">Message:</label>
+			<div class="col-sm-10">
+                
+                    <textarea class="form-control" ng-model="frm.messsage"></textarea>
+                    <span style="color:red" ng-show="myForm.frm.message.$dirty && myForm.frm.messsage.$invalid">
+                    <span ng-show="myForm.frm.messsage.$error.required">message is required.</span>
+                   
+                    </span>
+             	
+			</div>
+		</div>
+	
+	<div class="form-group">
+			<div class="col-sm-offset-2 col-sm-10">
+				<button type="submit" value="submit" class="btn btn-primary"  ng-disabled="myForm.frm.fname.$dirty && myForm.frm.fname.$invalid || myForm.frm.lname.$dirty && myForm.frm.lname.$invalid ||myForm.frm.age.$dirty && myForm.frm.age.$invalid ||myForm.frm.gender.$dirty && myForm.frm.gender.$invalid ||  myForm.frm.phone.$dirty && myForm.frm.phone.$invalid ||myForm.frm.message.$dirty && myForm.frm.message.$invalid ||
+                        myForm.frm.email.$dirty && myForm.frm.email.$invalid">Submit</button>
+                
+			</div>
+		</div>
+	</form>
+ <button class="btn btn-primary" ng-click="frmToggle()">Show Chart</button>
+<form class="form-horizontal"  id="PatientForm" hidden>
+       
+           
+<br>
+	<input type="search" ng-model="query" placeholder="Search Patient" class="form-control">
+	<br>
+	<table class="table table-striped">
+	 	<tr>
+	 		<th>first name</th><th>last name</th><th>Age</th><th>Gender</th><th>phone</th><th>patient.dob</th><th>message</th><th>Added</th><th>Remove</th>
+	 	</tr>
+	 	<tr ng-repeat="patient in patients | filter: query">
+	 		<td>{{ patient.fname }}</td><td>{{ patient.lname }}</td><td>{{ patient.age }}</td><td>{{ patient.gender }}</td><td>{{ patient.phone }}</td><td>{{ patient.dob }}</td><td>{{ patient.message }}</td><td>{{ patient.added_date }}</td><td><button class="btn btn-danger" ng-click="removeData(patient.id)">x</button></td>
+	 	</tr>
+	</table>
+       
+       
+	
+        </form> 
+
+</div>
